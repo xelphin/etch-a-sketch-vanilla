@@ -1,8 +1,10 @@
 // CONSTANTS
 const darkColor = "#011053";
 
-// DOM
+// COLLECT DOM ELEMENTS
 let gridDiv = document.querySelector('#grid-div');
+let slider = document.querySelector('.slider');
+let sliderValue = document.querySelector('.slider-value');
 
 // --------------------------------------------
 //              HELPER FUNCTIONS
@@ -10,7 +12,7 @@ let gridDiv = document.querySelector('#grid-div');
 
 function getPercent(amount) {
     let aPortion = (1/amount)*100;
-    return aPortion.toFixed(2).toString(10);
+    return aPortion.toFixed(4).toString(10);
 }
 
 // --------------------------------------------
@@ -38,11 +40,21 @@ function populateGrid (grid, rows, columns) {
 
 
 
-
 // --------------------------------------------
-//                     INIT
+//                     DOM
 // --------------------------------------------
 
 // Populate Grid with blocks
 populateGrid(gridDiv, 16,16);
 
+slider.oninput = function() {
+    // Update slider text value
+    let newValue = this.value;
+    sliderValue.textContent = newValue.toString(10);
+    // Delete all grid blocks
+    while (gridDiv.firstChild) {
+        gridDiv.removeChild(gridDiv.firstChild);
+    }
+    //repopulate grid
+    populateGrid(gridDiv, newValue,newValue);
+}
