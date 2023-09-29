@@ -55,6 +55,14 @@ body {
     flex-wrap: wrap; 
 }
 
+/* GRID BLOCK STYLES */
+.block-empty {
+    background-color: var(--light);
+}
+.block-colored-fully {
+    background-color: var(--dark);
+}
+
 
 /* RESULT */
 

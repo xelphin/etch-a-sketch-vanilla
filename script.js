@@ -23,7 +23,7 @@ function getPercent(amount) {
 //                  FUNCTIONS
 // --------------------------------------------
 function changeColor (event) {
-    event.target.style.backgroundColor = "var(--dark)";
+    event.target.className = 'grid-block block-colored-fully';
 }
 
 function populateGrid (grid) {
@@ -42,14 +42,21 @@ function populateGrid (grid) {
     }
 }
 
-function resetGrid() {
-    console.log("Resetting Grid");
+function resetGridEntirely() {
+    console.log("Resetting Grid Entirely");
     // Delete all grid blocks
     while (gridDiv.firstChild) {
         gridDiv.removeChild(gridDiv.firstChild);
     }
     //repopulate grid
     populateGrid(gridDiv);
+}
+
+function resetGridColor() {
+    console.log("Resetting Grid Color");
+    for (let child of gridDiv.children) {
+        child.className = 'grid-block block-empty';
+    }
 }
 
 
@@ -62,12 +69,12 @@ function resetGrid() {
 populateGrid(gridDiv);
 
 // Add Event Listeners
-resetButton.addEventListener("click", () => resetGrid() );
+resetButton.addEventListener("click", () => resetGridColor() );
 
 slider.oninput = function() {
     // Update slider text value
     boardSize = this.value;
     sliderValue.textContent = boardSize.toString(10);
     // Resey grid
-    resetGrid()
+    resetGridEntirely()
 }
