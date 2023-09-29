@@ -56,11 +56,21 @@ body {
 }
 
 /* GRID BLOCK STYLES */
+#reset-btn, .style-btn {
+    background-color: transparent;
+    padding: 5px 10px;
+}
 .block-empty {
     background-color: var(--light);
 }
-.block-colored-fully {
+.block-colored-blue {
     background-color: var(--dark);
+}
+.block-colored-gold {
+    background-color: rgb(250, 170, 58);
+}
+.block-colored-rainbow {
+    background-color: white;
 }
 
 
