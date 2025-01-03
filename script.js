@@ -84,7 +84,7 @@ function changeStyle(event) {
     let pickedStyle = event.target.getAttribute('data-style');
     switch (pickedStyle) {
         case "blue":
-            console.log("style: dark blue");
+            console.log("style: blue");
             style = "block-colored-blue";
             break;
         case "gold":
