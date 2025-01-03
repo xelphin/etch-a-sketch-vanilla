@@ -53,7 +53,7 @@ function populateGrid (grid) {
         // Style grid block
         gridBlock.style.width = getPercent(boardSize) + "%";
         gridBlock.style.height = getPercent(boardSize) + "%";
-        gridBlock.style.border = "1px solid var(--dark)"; 
+        gridBlock.style.border = "1px solid var(--secondary)"; 
         gridBlock.addEventListener("mouseover", (event) => changeColor(event) );
         // Append
         grid.appendChild(gridBlock);
