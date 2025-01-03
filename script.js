@@ -1,10 +1,10 @@
 // CONSTANTS
-const darkColor = "#011053";
-const rainbowColors = ["#ffadad","#ffd6a5", "#fdffb6", "#caffbf", "#9bf6ff", "#a0c4ff", "#bdb2ff", "#ffc6ff" ];
+const DARK_COLOR = "#011053";
+const RAINBOW_COLORS = ["#ffadad","#ffd6a5", "#fdffb6", "#caffbf", "#9bf6ff", "#a0c4ff", "#bdb2ff", "#ffc6ff" ];
 
 // GLOBALS
-let boardSize = 16;
-let style = "block-colored-blue";
+let curr_boardSize = 16;
+let curr_style = "block-colored-blue";
 let rainbowIndex = 0;
 
 // COLLECT DOM ELEMENTS
@@ -26,8 +26,9 @@ function getPercent(amount) {
 }
 
 function getRainbowColor() {
-    let color = rainbowColors[rainbowIndex];
-    rainbowIndex = (rainbowIndex + 1 ) % rainbowColors.length;
+    let color = RAINBOW_COLORS[rainbowIndex];
+    rainbowIndex = (rainbowIndex + 1 );
+    if (rainbowIndex == RAINBOW_COLORS.length) {rainbowIndex = 0;}
     return color;
 }
 
@@ -37,22 +38,22 @@ function getRainbowColor() {
 function changeColor (event) {
     event.target.style.removeProperty('background-color');
     event.target.className = "grid-block";
-    event.target.classList.add(style);
+    event.target.classList.add(curr_style);
 
     // Case Rainbow
-    if (style == "block-colored-rainbow") {
+    if (curr_style == "block-colored-rainbow") {
         event.target.style.backgroundColor = getRainbowColor();
     }
 }
 
 function populateGrid (grid) {
-    for (let i=0; i < (boardSize*boardSize); i++) {
+    for (let i=0; i < (curr_boardSize*curr_boardSize); i++) {
         // Create grid block
         const gridBlock = document.createElement('div');
         gridBlock.className = 'grid-block';
         // Style grid block
-        gridBlock.style.width = getPercent(boardSize) + "%";
-        gridBlock.style.height = getPercent(boardSize) + "%";
+        gridBlock.style.width = getPercent(curr_boardSize) + "%";
+        gridBlock.style.height = getPercent(curr_boardSize) + "%";
         gridBlock.style.border = "1px solid var(--secondary)"; 
         gridBlock.addEventListener("mouseover", (event) => changeColor(event) );
         // Append
@@ -85,15 +86,15 @@ function changeStyle(event) {
     switch (pickedStyle) {
         case "blue":
             console.log("style: blue");
-            style = "block-colored-blue";
+            curr_style = "block-colored-blue";
             break;
         case "gold":
             console.log("style: gold");
-            style = "block-colored-gold";
+            curr_style = "block-colored-gold";
             break;
         case "rainbow":
             console.log("style: rainbow");
-            style = "block-colored-rainbow";
+            curr_style = "block-colored-rainbow";
             break;
         default:
             console.log("style: something else");
@@ -115,9 +116,9 @@ resetButton.addEventListener("click", () => resetGridColor() );
 
 slider.oninput = function() {
     // Update slider text value
-    boardSize = this.value;
-    sliderValue.textContent = boardSize.toString(10);
-    // Resey grid
+    curr_boardSize = this.value;
+    sliderValue.textContent = curr_boardSize.toString(10);
+    // Reset grid
     resetGridEntirely()
 }
 
